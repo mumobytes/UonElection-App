@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
 
 function ResultsPage() {
   const [results, setResults] = useState([]);
@@ -40,8 +31,8 @@ function ResultsPage() {
     } catch (err) {
       setError(
         err.response?.data?.detail ||
-        err.message ||
-        "Failed to load results"
+          err.message ||
+          "Failed to load results"
       );
     } finally {
       setLoading(false);
@@ -88,21 +79,6 @@ function ResultsPage() {
                 </div>
               ))}
             </div>
-
-            {/*
-
-            <div style={styles.chartWrap}>
-              <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={position.results}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="full_name" />
-                  <YAxis allowDecimals={false} />
-                  <Tooltip />
-                  <Bar dataKey="total_votes" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            */}
           </div>
         ))}
       </div>
@@ -143,7 +119,7 @@ const styles = {
     maxWidth: "1100px",
     margin: "0 auto",
     display: "grid",
-    gridTemplateColumns: "1fr",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "1.5rem",
   },
   card: {
@@ -163,7 +139,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "0.9rem",
-    marginBottom: "1.5rem",
   },
   resultRow: {
     display: "flex",
@@ -191,11 +166,6 @@ const styles = {
     borderRadius: "999px",
     fontWeight: "700",
     whiteSpace: "nowrap",
-  },
-  chartWrap: {
-    width: "100%",
-    height: "260px",
-    marginTop: "1rem",
   },
   loading: {
     minHeight: "100vh",
