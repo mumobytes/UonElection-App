@@ -47,7 +47,7 @@ function OtpPage() {
       <div style={styles.card}>
         <h1 style={styles.title}>OTP Verification</h1>
         <p style={styles.subtitle}>
-          Enter the OTP sent to your email address.
+          Enter the OTP sent to your school email address.
         </p>
 
         <form onSubmit={handleVerifyOtp} style={styles.form}>
