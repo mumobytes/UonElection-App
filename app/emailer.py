@@ -1,41 +1,46 @@
 import os
-import yagmail
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
-
-EMAIL_USER = os.getenv("EMAIL_USER")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+FROM_EMAIL = os.getenv("FROM_EMAIL")
 
 
 def send_otp_email(to_email: str, otp: str):
     try:
-        yag = yagmail.SMTP(EMAIL_USER, EMAIL_PASSWORD)
+        url = "https://api.resend.com/emails"
 
-        subject = "NVS Election OTP Verification"
-        contents = f"""
-Hello,
+        headers = {
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json",
+        }
 
-Your One-Time Password (OTP) for the NASA Voting System is:
+        payload = {
+            "from": FROM_EMAIL,
+            "to": [to_email],
+            "subject": "NASA 2026 Election OTP Verification",
+            "html": f"""
+                <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+                    <h2>N'ASA Election OTP Verification</h2>
+                    <p>Your One-Time Password (OTP) is:</p>
+                    <h1 style="color: #22c55e;">{otp}</h1>
+                    <p>This code will expire in 5 minutes.</p>
+                    <p>If you did not request this code, please ignore this email.</p>
+                    <br>
+                    <p>Regards,<br>NASA Electoral Committee.</p>
+                </div>
+            """,
+        }
 
-{otp}
+        response = requests.post(url, headers=headers, json=payload)
 
-This code will expire in 5 minutes.
+        if response.status_code in [200, 201]:
+            return True
 
-If you did not request this code, please ignore this email.
-
-Regards,
-NVS Election Team
-        """
-
-        yag.send(
-            to=to_email,
-            subject=subject,
-            contents=contents
-        )
-
-        return True
+        print("Resend error:", response.text)
+        return False
 
     except Exception as e:
         print(f"Failed to send OTP email: {e}")
