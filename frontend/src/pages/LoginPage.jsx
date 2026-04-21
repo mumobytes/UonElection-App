@@ -38,8 +38,8 @@ function LoginPage() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1>NASA Voting System</h1>
-        <p>Enter your admission number and email to receive an OTP.</p>
+        <h1>N'ASA Voting System</h1>
+        <p>Enter your admission number and School email to receive an OTP.</p>
 
         <form onSubmit={handleRequestOtp} style={styles.form}>
           <input
@@ -53,7 +53,7 @@ function LoginPage() {
 
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder="School Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
