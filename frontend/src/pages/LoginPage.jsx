@@ -68,6 +68,9 @@ function LoginPage() {
             required
             style={styles.input}
           />
+          <p style={styles.helperText}>
+            "Check your spam folder if your inbox is empty"
+          </p>
 
           <button
             type="submit"
@@ -119,6 +122,11 @@ const styles = {
     border: "1px solid var(--border)",
     fontSize: "1rem",
     outline: "none",
+  },
+  helperText: {
+  fontSize: "0.9rem",   
+  color: "#6b7280",    
+  marginTop: "0.5rem",
   },
   button: {
     padding: "1rem",
