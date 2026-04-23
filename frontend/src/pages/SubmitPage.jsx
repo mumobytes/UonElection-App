@@ -52,11 +52,12 @@ function SubmitPage() {
       <div style={styles.container}>
         <div style={styles.card}>
           <div style={styles.icon}>✓</div>
-          <h1 style={styles.title}>Thank You for Voting</h1>
+          <h1 style={styles.title}>Thank You for Voting.</h1> 
           <p style={styles.subtitle}>
             {voterName ? `${voterName}, ` : ""}
             your vote has been successfully recorded.
           </p>
+          <br></br>
           <p style={styles.message}>
             Every vote matters, and your voice helps shape the future of NASA.
           </p>
