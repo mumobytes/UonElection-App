@@ -69,7 +69,7 @@ function LoginPage() {
             style={styles.input}
           />
           <p style={styles.helperText}>
-            "Check your spam folder if your inbox is empty"
+            Check your spam folder if your inbox is empty
           </p>
 
           <button
