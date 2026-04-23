@@ -124,9 +124,10 @@ const styles = {
     outline: "none",
   },
   helperText: {
-  fontSize: "0.9rem",   
-  color: "#6b7280",    
-  marginTop: "0.5rem",
+    fontSize: "0.9rem",   
+    color: "#6b7280",    
+    marginTop: "0.5rem",
+    textAlign: "center",
   },
   button: {
     padding: "1rem",
