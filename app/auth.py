@@ -1,6 +1,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.jwt_helper import verify_access_token
+from app.utils.time_control import is_voting_open
 
 security = HTTPBearer()
 
@@ -23,6 +24,13 @@ def get_current_voter(current_user: dict = Depends(get_current_user)):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Voter access required"
+        )
+
+    
+    if not is_voting_open():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Voting has closed. Thank you for participating."
         )
 
     return current_user

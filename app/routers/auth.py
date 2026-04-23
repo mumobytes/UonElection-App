@@ -14,12 +14,21 @@ from schemas import (
 from app.otp import generate_otp
 from app.emailer import send_otp_email
 from app.jwt_helper import create_access_token
+from app.utils.time_control import is_voting_open  # ✅ NEW
 
 router = APIRouter()
 
 
 @router.post("/request-otp", response_model=MessageResponse)
 def request_otp(payload: VoterLoginRequest, db: Session = Depends(get_db)):
+
+    # ⛔ NEW: Block OTP requests after voting closes
+    if not is_voting_open():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Voting has closed. You can no longer request an OTP."
+        )
+
     voter = db.query(Voter).filter(
         Voter.admission_no == payload.admission_no,
         Voter.email == payload.email
@@ -54,6 +63,14 @@ def request_otp(payload: VoterLoginRequest, db: Session = Depends(get_db)):
 
 @router.post("/verify-otp", response_model=AuthTokenResponse)
 def verify_otp(payload: OTPVerifyRequest, db: Session = Depends(get_db)):
+
+    # ⛔ NEW: Block verification after voting closes
+    if not is_voting_open():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Voting has closed. OTP verification is no longer allowed."
+        )
+
     voter = db.query(Voter).filter(
         Voter.admission_no == payload.admission_no
     ).first()
