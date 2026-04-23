@@ -172,7 +172,7 @@ function VotePage() {
             >
               {candidate.image_url ? (
                   <img
-                    src={`http://127.0.0.1:8000${candidate.image_url}`}
+                    src={candidate.image_url}
                     alt={candidate.full_name}
                     style={styles.candidateImage}
                   />
