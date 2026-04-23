@@ -53,7 +53,7 @@ function LoginPage() {
         <form onSubmit={handleRequestOtp} style={styles.form}>
           <input
             type="text"
-            placeholder="Admission Number"
+            placeholder="Admission Number(SAC3/..)"
             value={admissionNo}
             onChange={(e) => setAdmissionNo(e.target.value)}
             required
@@ -62,7 +62,7 @@ function LoginPage() {
 
           <input
             type="email"
-            placeholder="School Email Address"
+            placeholder="School Email Address(lower-case)"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
