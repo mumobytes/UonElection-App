@@ -21,12 +21,28 @@
   padding: 0;
 }
 
-html {
-  color-scheme: light;
+html, body {
+  color-scheme: light !important;
+  background-color: #f8fafc;
 }
 
 body {
   background: linear-gradient(135deg, var(--secondary), var(--background));
   font-family: "Inter", sans-serif;
   color: var(--text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #22c55e;
+    --secondary: #e0f2fe;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text: #1e293b;
+  }
+
+  body {
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc) !important;
+    color: #1e293b !important;
+  }
 }
