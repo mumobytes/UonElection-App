@@ -27,7 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/images", StaticFiles(directory="images"), name="images")
+app.mount("/images", StaticFiles(directory="frontend/public/images"), name="images")
 
 app.include_router(auth.router, prefix="/auth", tags=["Voter Authentication"])
 app.include_router(vote.router, prefix="/vote", tags=["Voting"])
