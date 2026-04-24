@@ -15,7 +15,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
-    "https://election-app-eight.vercel.app/",
+    "https://election-app-eight.vercel.app",
     frontend_url,
 ]
 
