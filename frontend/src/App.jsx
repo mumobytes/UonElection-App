@@ -17,7 +17,7 @@ function App() {
         <Route path="/vote" element={<VotePage />} />
         <Route path="/submit" element={<SubmitPage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
-        <Route path="/results" element={<ResultsPage />} />
+        <Route path="admin/results" element={<ResultsPage />} />
       </Routes>
     </BrowserRouter>
   );
